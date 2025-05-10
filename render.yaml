@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: my-php-app
+    env: docker
+    plan: starter
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DB_HOST
+        fromSecret: DB_HOST
+      - key: DB_USER
+        fromSecret: DB_USER
+      - key: DB_PASS
+        fromSecret: DB_PASS
+      - key: PORT
+        value: "80"
+    healthCheckPath: "/healthz.php"
